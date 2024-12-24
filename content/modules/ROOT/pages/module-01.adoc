@@ -1,6 +1,6 @@
 = Red Hat Ansible Automation Platform
 
-== Explore Automation Controller
+== Explore Automation Controller Inventory
 
 . Log into Ansible Automation Platform 2.5
 +
@@ -17,47 +17,40 @@
 +
 ****
 [upperalpha]
-. Go to *Automation Execution → Infrastructure → Hosts*
+.. Go to *Automation Execution → Infrastructure → Hosts*
 +
 NOTE: At this point you will only see localhost listed - no other hosts.
 
-. You need to sync the inventory.  
+.. You need to sync the inventory.  
+... Go to Inventories.
+... Select the RH Insights Inventory.
+... Click the sources tab. 
+... Click launch inventory update (The rocket icon to the right of “Insights source”).
 
-Go to Inventories.
-Select the RH Insights Inventory.
-Click the sources tab. 
-Click launch inventory update (The rocket icon to the right of “Insights source”).
++
+NOTE: You will see the status change to Running briefly, then Success once completed. Once completed, return to the Hosts page. You should now see several entries from the RH Insights Inventory.
 
-You will see the status change to Running briefly, then Success once completed. Once completed, return to the Hosts page.
-You should now see several entries from the RH Insights Inventory.
 ****
 
-We also need to set up a job template.  This is what will run when we detect malware.
-We will just use a simple “Hello World” as we don’t want to tell you HOW to deal with Malware in your environment.
+. Explore Automation Controller Job Template
++
+****
+[upperalpha]
+.. Go to *Automation Execution → Templates*
++
+NOTE: You will see exiting *Malware Detection Job* job template.  This is what will get triggered when malware is detected. We have just used a simple “Hello World” as we don't want to tell you HOW to deal with Malware in your environment.
 
+.. Click The *Malware Detection Job* to explore following:
 
-Go to Templates.
-Click Create Template
-Click Create Job Template
-Name: Malware Detection Job
-Description: Hello World Placeholder
-Job Type: Run
-Inventory: RH Insights Inventory
-Project: Demo Project 
-Note: If you select the RH Insights Inventory you can see playbooks that are generated in Insights.  Insights does not generate a playbook for handling Malware as that is up to your organizational procedures to define.
-Playbook: hello_world.yml
-Execution Environment: Default execution environment
-Credentials: Demo Credential
-Labels: <leave blank>
-Forks: 0 <leave at default>
-Limit: <leave blank>
-Verbosity: 0 <leave at default>
-Job slicing: 1 <leave at default>
-Timeout: 0 <leave at default>
-Show changes: disabled (unselected)
-Instance groups: <leave blank>
-Job tags: <leave blank>
-Skip tags: <leave blank>
-Extra variables: <leave blank>
-Options: leave all unselected
-Click Create job template.
+... Name: Malware Detection Job
+... Description: Hello World Placeholder
+... Job Type: Run
+... Inventory: RH Insights Inventory
+... Project: Demo Project 
+... Playbook: hello_world.yml
+... Execution Environment: Default execution environment
+... Credentials: Demo Credential
++
+NOTE: If you select the RH Insights Inventory you can see playbooks that are generated in Insights.  Insights does not generate a playbook for handling Malware as that is up to your organizational procedures to define.
+
+****
