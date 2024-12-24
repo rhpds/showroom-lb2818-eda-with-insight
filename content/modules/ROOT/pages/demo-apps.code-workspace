@@ -1,0 +1,13 @@
+{
+    "folders": [
+        {
+            "path": "../../../.."
+        },
+        {
+            "path": "../../../../../demo-apps"
+        }
+    ],
+    "settings": {
+        "java.compile.nullAnalysis.mode": "automatic"
+    }
+}
