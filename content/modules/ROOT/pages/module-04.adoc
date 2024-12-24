@@ -1,4 +1,4 @@
-= Red Hat Advanced Cluster Security for Kubernetes
+= Trigger the Event
 
 [[outline]]
 
