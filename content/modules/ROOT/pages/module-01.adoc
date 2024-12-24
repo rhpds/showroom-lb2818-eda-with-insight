@@ -1,6 +1,6 @@
 = Red Hat Ansible Automation Platform
 
-== Explore Automation Controller Inventory
+== Explore Automation Controller
 
 . Log into Ansible Automation Platform 2.5
 +
@@ -12,7 +12,7 @@
 ... *Password:* {aap_controller_admin_password}
 ****
 
-. Explore Automation Controller
+. Explore Automation Controller Inventory
 
 +
 ****
