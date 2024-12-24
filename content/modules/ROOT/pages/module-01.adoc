@@ -2,15 +2,26 @@
 
 == Explore Automation Controller
 
-. Log into Ansible Automation Platform 2.5:
+. Log into Ansible Automation Platform 2.5
++
+****
+[upperalpha]
+.. Find the login details for accessing Ansible Automation Platform 2.5 below:
+... *Ansible Automation Platfrom URL:* {aap_controller_web_url}[window=_blank]
+... *Username:* {aap_controller_admin_user}
+... *Password:* {aap_controller_admin_password}
+****
 
+. Explore Automation Controller
 
-Log into your Ansible Automation Platform 2.5 host.  The URL, Username, and Password are on your lab info page.
++
+****
+[upperalpha]
+. Go to *Automation Execution → Infrastructure → Hosts*
++
+NOTE: At this point you will only see localhost listed - no other hosts.
 
-Go to: Automation Execution → Infrastructure → Hosts
-
-At this point you will only see localhost listed - no other hosts.
-You need to sync the inventory.  
+. You need to sync the inventory.  
 
 Go to Inventories.
 Select the RH Insights Inventory.
@@ -19,6 +30,7 @@ Click launch inventory update (The rocket icon to the right of “Insights sourc
 
 You will see the status change to Running briefly, then Success once completed. Once completed, return to the Hosts page.
 You should now see several entries from the RH Insights Inventory.
+****
 
 We also need to set up a job template.  This is what will run when we detect malware.
 We will just use a simple “Hello World” as we don’t want to tell you HOW to deal with Malware in your environment.
