@@ -1,1 +1,1 @@
-= Ansible Automation Controller
+= Red Hat Ansible Automation Platform
