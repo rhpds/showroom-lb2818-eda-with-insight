@@ -40,9 +40,9 @@ NOTE: You will see the status change to Running briefly, then Success once compl
 +
 NOTE: You will see exiting *Malware Detection Job* job template.  This is what will get triggered when malware is detected. We have just used a simple “Hello World” as we don't want to tell you HOW to deal with Malware in your environment.
 
-.. Click The *Malware Detection Job* to explore following:
+.. Click The *handle-malware-detection* job template to explore following:
 
-... Name: Malware Detection Job
+... Name: handle-malware-detection
 ... Description: Hello World Placeholder
 ... Job Type: Run
 ... Inventory: RH Insights Inventory
