@@ -1,1 +1,112 @@
 = Red Hat Insight
+
+
+Next we need to get the Event stream URL and copy it for use in setting up your integration with Insights.
+
+Go to Automation Decisions → Event Streams
+On the Details tab, locate the URL.  
+Click the copy button to copy the URL to the clipboard.
+
+
+With this URL copied to your clipboard we will log into the hybrid cloud console to create an EDA integration which will send detected events from the console to EDA.  
+
+Hybrid Cloud Console setup tasks
+
+Log into the Hybrid Cloud console by opening a new browser tab or window and going to https://console.redhat.com.
+
+Log in with the following credentials:
+
+User:		lab-EB9A
+Password: 	R3dh4t2024!
+
+Note: This user has limited permissions in the Hybrid Cloud Console, and while they can complete all of the activities in this lab exercise, there are certain capabilities that they will not have - this is expected and is done by design to provide a positive lab experience for all users.
+
+Creating Hybrid Cloud Console Integrations
+
+To create an integration with Event Driven Ansible, in the upper right hand corner click the gear icon, then click integrations.
+
+
+
+Click the Reporting & Automation tab.
+Click Add integration
+
+
+
+
+Click Event-Driven Ansible and click Next
+
+Name: <Bastion ID>EDAIntegration
+Note: Your RHEL host has a unique ID called a bastion ID.  Use this ID to uniquely identify your integration.  This is necessary since the Hybrid Cloud Console is a shared environment with other lab users.  You can find your bastion ID on the Lab info page - you’ll be ssh’ing into this host shortly.
+Endpoint URL: <Event Stream URL>
+Note: This is the event stream URL that you copied at the end of the last exercise.
+Secret token: R3dh4t2024!
+
+
+Click Next
+Review the settings and click Submit.
+
+Locate the integration that you just created.  At the end of the row there should be 3 vertical dots stacked on top of each other.
+
+
+From the menu, click Test.
+
+
+
+To send a test from the Hybrid Cloud Console to the EDA instance, click Send.
+
+
+A message will appear in the upper right corner of the screen.  Click the hyperlink to be taken to the event log.  
+Note: the direct URL to the event log is: https://console.redhat.com/settings/notifications/eventlog 
+
+
+
+You should see an entry similar to this.
+
+
+
+If you receive an error message, double check your EDA URL and Token to make sure they were entered correctly.
+
+Configuring Hybrid Cloud Console Notifications 
+
+At this point you have a tested connection between your EDA instance and the Hybrid Cloud Console.
+Now we need to tell the console what type of events we want to send to EDA.
+This is done through notifications.
+
+We are going to set up a notification to send Red Hat Enterprise Linux Malware Detection events onto EDA for processing with a rulebook.
+
+On the left hand navigation bar, click Notifications
+Click Configure Events.
+
+There are two sets of tabs here - the top tab shows platforms - Red Hat Enterprise Linux, Console (aka the Hybrid Cloud Console), and OpenShift.
+
+Make sure that Red Hat Enterprise Linux is selected.
+
+The next set of tabs is Configuration and Behavior Groups.
+
+Configuration shows you the different event types that are generated for Red Hat Enterprise Linux.
+These are defined by the services - you cannot create new event types.
+
+Behavior Groups allows you to group types of notifications together.  
+You are going to create a new behavior group that sends Malware Detection events to your EDA integration that you created.
+
+Click Behavior Groups.
+Click Create new group
+
+In the wizard, complete the following:
+Behavior Group Name: <Bastion ID>BehaviorGroup
+Use the same bastion ID that you used above to uniquely identify your behavior group.
+Click Next
+Under Actions from the drop down box select Integration: Event-Driven Ansible
+Under Recipient from the drop down box select your integration.
+This should be: <Bastion ID>EDAIntegration
+Additional actions can be added to a behavior group.  As an example, it is possible to have the same group sending data to EDA, Slack, ServiceNow, Microsoft Teams, and a generic webhook.
+You’ll just be configuring the EDA integration at this time.
+Click Next.
+Under Associate event types, in the “Filter by event type” box type malware.
+You’ll see the event type of “Detected Malware”.  
+Check the box to the left of this event type.
+Click Next.
+Review and click Finish.
+
+At this point you have created an integration and a behavior group in the Hybrid Cloud Console.
+
