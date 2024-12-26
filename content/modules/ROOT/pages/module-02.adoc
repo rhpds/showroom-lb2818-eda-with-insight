@@ -37,6 +37,7 @@ NOTE: With this URL copied to your clipboard we will log into the Red Hat Hybrid
 
 +
 image::eda-event-stream-url.jpg[Event Stream]
+
 ****
 
 
@@ -49,17 +50,26 @@ image::eda-event-stream-url.jpg[Event Stream]
 ... Click the gear icon in the upper right hand corner, then click integrations.
 
 +
-image::hybrid-cloud-integration-gear.jpg[Event Stream]
+image::hybrid-cloud-integration-gear.jpg[Integration Gear]
 
 ... Click the Reporting & Automation tab.
+
++
+image::hybrid-cloud-integration-reporting-automation.jpg[Reporting and Automation]
+
 ... Click Add integration.
+
 ... Select Event-Driven Ansible and click Next
+
++
+image::hybrid-cloud-integration-eda.jpg[Event-Driven Ansible]
+
 ... Enter integration details, as give below:
 [loweralpha]
 .... Name: {guid}-EDAIntegration
 +
 NOTE: Your RHEL host has a unique ID called a bastion ID.  Use this ID to uniquely identify your integration.  This is necessary since the Hybrid Cloud Console is a shared environment with other lab users.  
-.... Endpoint URL: <Event Stream URL>
+.... Endpoint URL: --<Paste Event Stream URL>--
 +
 NOTE: This is the event stream URL that you copied at the end of the last exercise.
 .... Secret token: {hybrid_cloud_password}
