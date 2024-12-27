@@ -106,7 +106,7 @@ image::hybrid-cloud-integration-test-msg.jpg[Test Message]
 +
 NOTE: A message will appear in the upper right corner of the screen.  Click the hyperlink to be taken to the event log.
 +
-TIP: the direct URL to the event log is: https://console.redhat.com/settings/notifications/eventlog 
+TIP: the direct URL to the event log is: https://console.redhat.com/settings/notifications/eventlog[window=_blank]
 +
 WARNING: If you receive an error message, double check your Event-Driven Ansible URL and Token to make sure they were entered correctly.
 
