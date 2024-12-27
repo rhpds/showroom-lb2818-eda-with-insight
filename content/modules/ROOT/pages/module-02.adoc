@@ -1,6 +1,3 @@
-:hybrid_cloud_url: https://console.redhat.com[window=_blank]
-:hybrid_cloud_username: lab-EB9A
-:hybrid_cloud_password: R3dh4t2024!
 :imagesdir: ../assets/images
 
 = Red Hat Insight
@@ -36,6 +33,7 @@ NOTE: This user has limited permissions in the Hybrid Cloud Console, and while t
 NOTE: With this URL copied to your clipboard we will log into the Red Hat Hybrid Cloud Console, in the following steps, to create an Event-driven Ansible integration which will send detected events from the console to Event-driven Ansible.  
 
 +
+.Event-Driven event steam (Example)
 image::eda-event-stream-url.jpg[Event Stream]
 
 ****
@@ -48,20 +46,20 @@ image::eda-event-stream-url.jpg[Event Stream]
 .. To create an integration with Event Driven Ansible after login into Red Hat Hybrid Cloud Console, follow the steps given below.
 
 ... Click the gear icon in the upper right hand corner, then click integrations.
-
 +
+.Hybrid Cloud menu
 image::hybrid-cloud-integration-gear.jpg[Integration Gear]
 
 ... Click the Reporting & Automation tab.
-
 +
+.Reporting and Automation Option
 image::hybrid-cloud-integration-reporting-automation.jpg[Reporting and Automation]
 
 ... Click Add integration.
 
 ... Select Event-Driven Ansible and click Next
-
 +
+.Event-Driven Ansible integration
 image::hybrid-cloud-integration-eda.jpg[Event-Driven Ansible]
 
 ... Enter integration details, as give below
@@ -81,12 +79,10 @@ This is the event stream URL that you copied at the end of the last exercise.
 ====
 
 .... Secret token: {hybrid_cloud_password}
-
 +
-[image]
-====
+.Integration Details page
 image::hybrid-cloud-integration-configuration.jpg[Event-Driven Ansible]
-====
+
 ... Click Next
 ... Review the settings and click Submit.
 
@@ -99,16 +95,20 @@ image::hybrid-cloud-integration-configuration.jpg[Event-Driven Ansible]
 .. To test, Locate the integration that you just created.
 ... Click the 3 vertical dots located at the end of the row.
 ... Click Test from the menu.
-... To send a test from the Hybrid Cloud Console to the EDA instance, click Send.
++
+.Test integration
+image::hybrid-cloud-integration-test-menu.jpg[Test Menu]
+
+... To send a test from the Hybrid Cloud Console to the Event-Driven Ansible instance, click Send.
++
+.Send Test Message
+image::hybrid-cloud-integration-test-msg.jpg[Test Message]
 +
 NOTE: A message will appear in the upper right corner of the screen.  Click the hyperlink to be taken to the event log.
 +
-NOTE: the direct URL to the event log is: https://console.redhat.com/settings/notifications/eventlog 
-
-
-... You should see an entry similar to this.
+TIP: the direct URL to the event log is: https://console.redhat.com/settings/notifications/eventlog 
 +
-WARNING: If you receive an error message, double check your EDA URL and Token to make sure they were entered correctly.
+WARNING: If you receive an error message, double check your Event-Driven Ansible URL and Token to make sure they were entered correctly.
 
 ****
 
@@ -120,15 +120,17 @@ WARNING: If you receive an error message, double check your EDA URL and Token to
 
 [NOTE]
 ====
-At this point you have a tested connection between your EDA instance and the Hybrid Cloud Console.
-Now we need to tell the console what type of events we want to send to EDA.
+At this point you have a tested connection between your Event-Driven Ansible instance and the Hybrid Cloud Console.
+Now we need to tell the console what type of events we want to send to Event-Driven Ansible.
 This is done through notifications.
 ====
-
-.. We are going to set up a notification to send Red Hat Enterprise Linux Malware Detection events onto EDA for processing with a rulebook.
- ... On the left hand navigation bar, click Notifications
- ... Then click Configure Events.
-
+[upperalpha]
+.. We are going to set up a notification to send Red Hat Enterprise Linux Malware Detection events onto Event-Driven Ansible for processing with a rulebook.
+ ... On the left hand navigation bar, click Notifications and then click Configure Events.
++
+.Notification
+image::hybrid-cloud-notification.jpg[Notification]
++
 [NOTE] 
 ====
 There are two sets of tabs here - the top tab shows platforms - Red Hat Enterprise Linux, Console (aka the Hybrid Cloud Console), and OpenShift. Make sure that Red Hat Enterprise Linux is selected.
@@ -141,29 +143,35 @@ These are defined by the services - you cannot create new event types.
 Behavior Groups allows you to group types of notifications together.  
 
 ====
-.. You are going to create a new behavior group that sends Malware Detection events to your EDA integration that you created.
+.. You are going to create a new behavior group for Red Hat Enterprise Linux that sends Malware Detection events to your Event-Driven Ansible integration that you created.
 
-... Click Behavior Groups.
-... Click Create new group
+... Click Behavior Groups and then click Create new group
++
+.Create Behavior Groups
+image::hybrid-cloud-notification-BehaviorGroup.jpg[Create Behavior Groups]
 
 ... In the wizard, complete the following:
-.... Behavior Group Name: {guid}-BehaviorGroup
+.... Enter Behavior Group Name: *{guid}-BehaviorGroup* and click next
 +
-NOTE: Use the same bastion ID that you used above to uniquely identify your behavior group.
-.... Click Next
-.... Under Actions from the drop down box select Integration: Event-Driven Ansible
+.Behavior Groups Name
+image::hybrid-cloud-notification-BehaviorGroup-1.jpg[Behavior Groups Name]
+
+.... Under Actions from the drop down box select *Integration: Event-Driven Ansible*
 .... Under Recipient from the drop down box select your integration.
-This should be: {guid}-EDAIntegration
-
+This should be: *{guid}-EDAIntegration* and click next.
 +
-NOTE: Additional actions can be added to a behavior group.  As an example, it is possible to have the same group sending data to EDA, Slack, ServiceNow, Microsoft Teams, and a generic webhook.
-.... You'll just be configuring the EDA integration at this time.
-Click Next.
+.Behavior Groups Action and Recipient
+image::hybrid-cloud-notification-BehaviorGroup-2.jpg[Behavior Groups Action and Recipient]
++
+NOTE: Additional actions can be added to a behavior group.  As an example, it is possible to have the same group sending data to Event-Driven Ansible, Slack, ServiceNow, Microsoft Teams, and a generic webhook. You'll just be configuring the Event-Driven Ansible integration at this time.
 
-.... Under Associate event types, in the “Filter by event type” box type malware.
-... You.ll see the event type of “Detected Malware”. Check the box to the left of this event type.
-.... Click Next.
-.... Review and click Finish.
+
+.... Under Associate event types, in the *“Filter by event type” box type malware*. You.ll see the event type of *“Detected Malware”*. Check the box to the left of this event type then Click Next.
++
+.Behavior Groups Action and Recipient
+image::hybrid-cloud-notification-BehaviorGroup-3.jpg[Behavior Groups Action and Recipient]
+
+.... Review and click finish.
 
 NOTE: At this point you have created an integration and a behavior group in the Hybrid Cloud Console.
 
