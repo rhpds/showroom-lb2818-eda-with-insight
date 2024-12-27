@@ -64,16 +64,29 @@ image::hybrid-cloud-integration-reporting-automation.jpg[Reporting and Automatio
 +
 image::hybrid-cloud-integration-eda.jpg[Event-Driven Ansible]
 
-... Enter integration details, as give below:
+... Enter integration details, as give below
 [loweralpha]
 .... Name: {guid}-EDAIntegration
 +
-NOTE: Your RHEL host has a unique ID called a bastion ID.  Use this ID to uniquely identify your integration.  This is necessary since the Hybrid Cloud Console is a shared environment with other lab users.  
+[NOTE]
+====
+Your RHEL host has a unique ID called a bastion ID.  Use this ID to uniquely identify your integration.  This is necessary since the Hybrid Cloud Console is a shared environment with other lab users. 
+====
+
 .... Endpoint URL: --<Paste Event Stream URL>--
 +
-NOTE: This is the event stream URL that you copied at the end of the last exercise.
+[NOTE]
+====
+This is the event stream URL that you copied at the end of the last exercise.
+====
+
 .... Secret token: {hybrid_cloud_password}
 
++
+[image]
+====
+image::hybrid-cloud-integration-configuration.jpg[Event-Driven Ansible]
+====
 ... Click Next
 ... Review the settings and click Submit.
 
