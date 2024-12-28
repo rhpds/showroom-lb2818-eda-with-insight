@@ -1,1 +1,45 @@
+:imagesdir: ../assets/images
+
 = Red Hat Event-driven Ansible
+
+. Event-Driven Ansible Rulebook Activation
++
+****
+[upperalpha]
+.. The next thing we need to do is create a rulebook activation.
+
+... While still in the Automation Decisions area, click Rulebook Activations on the left hand navigation bar and then Click Create rulebook activation
++
+.Go to Rulebook Activation
+image::eda-rulebook.jpg[Rulebook Activation]
+
+... Fill Create rulebook activation form as per details given below
++
+|===
+| Name | RH Insights rulebook
+| Description | Red Hat Insights rulebook
+| Organization | Default
+| Project | RH Insights
+| Rulebook | insights-eda-malware-rulebook.yml
+| Event streams |  Click the gear to open the event streams dialog, Review and click save
+| Credential | Insights_AAP
+| Decision environment | Default Decision Environment
+| Restart policy | On failure
+| Log level | Error
+| Service name | <leave this blank>
+| Rulebook activation enabled? | Enabled
+| Variables | <leave this blank>
+| Skip audit events | Disabled (unchecked)
+|===
++
+.Go to Rulebook Activation
+image::eda-rulebook-activation.jpg[Rulebook Activation]
+
+... Click Create rulebook activation
++
+NOTE: This action will take several minutes.  You do not need to wait for it to complete.
+
+****
+
+You are all set to receive a rulebook in the event that Insights detects malware on a RHEL host.
+The next step is to set up Insights Malware Detection and generate a Malware Detection incident.

@@ -110,6 +110,18 @@ TIP: the direct URL to the event log is: https://console.redhat.com/settings/not
 +
 WARNING: If you receive an error message, double check your Event-Driven Ansible URL and Token to make sure they were entered correctly.
 
+.. Return to the Ansible Automation Platform environment to verify that Event-Driven Ansible received your test event.
++ 
+NOTE: you may find that you have been logged out and you might be required to sign back in.
+
+... You may already be in the Event-Driven Ansible area from where you copied the event stream URL earlier. If not, go to *Automation Decisions → Event Streams*
+
+... Click the *Red Hat Insights Event Stream*
+
+... You should notice that there is an event received.
++
+.Check Event received
+image::eda-event-stream-event-received.jpg[Event Received]
 ****
 
 
