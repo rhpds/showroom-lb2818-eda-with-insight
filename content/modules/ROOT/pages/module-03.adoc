@@ -1,7 +1,8 @@
 :imagesdir: ../assets/images
 
-= Trigger the Event
+= Trigger and Verify the Event
 
+== Rulebook Activation
 . Event-Driven Ansible Rulebook Activation
 +
 ****
@@ -40,6 +41,8 @@ image::eda-rulebook-activation.jpg[Rulebook Activation]
 NOTE: This action will take several minutes.  You do not need to wait for it to complete.
 
 ****
+
+== Insights Malware Detection
 
 . You are all set to receive a rulebook in the event that Insights detects malware on a RHEL host. 
 +
@@ -215,6 +218,7 @@ IMPORTANT: Wait until the command is completely finished running and you are ret
 
 ****
 
+=== Verify Trigger
 . View Malware Detected in Insights
 +
 ****
@@ -259,25 +263,33 @@ If you look through the output you should see 4 different “Match Source” ent
 ****
 
 
-With several people taking this lab, to verify that we triggered your integration, let's return to the Ansible Automation Platform environment.
+. To verify that we triggered your integration, let's return to the Ansible Automation Platform environment.
++
+****
+[upperalpha]
 
+NOTE: you may find that you have been logged out and you might be required to sign back in.
 
-Verifying triggering of the EDA rulebook
+.. Go to Automation Decisions → Rulebook Activations and Observe - *RH Insights rulebook* Rulebook Activations Fire Count has been increasd.
++
+.Rulebook Activation
+image::eda-rulebook-fire.jpg[Rulebook Activation]
 
-Return to your Ansible Automation Platform environment.
+.. Go to Automation Execution → Jobs and Observe: New job *handle-malware-detection* has just run.
++
+.Job Template Run
+image::aap-job-run.jpg[Job Template Run]
 
-Note: you may find that you have been logged out and you might be required to sign back in.
+****
 
-If you left your previous browser tab open, you should already see that the Rulebook Activation named RH Insights rulebook is in the Running status.
+== Summary
 
-If you need help, in the left hand navigation bar go to: Automation Decisions → Rulebook Activations.
-
-In summary, You have created a connection between the AAP 2.5 EDA environment and Insights.
+In summary, You have created a connection between the Ansible Automation Platform 2.5 Event-Driven Ansible environment and Insights.
 You created a notification behavior group that calls this integration when Malware is detected on a RHEL host.
-Upon receiving an event on Malware being detected, AAP runs a rulebook.
+Upon receiving an event on Malware being detected, Ansible Automation Platform runs a rulebook.
 
 This rulebook doesn't really do much today, but you could create a rulebook that follows the policies and procedures of your organization in the event that malware is detected.
 
-That completes this exercise on integrating EDA with Red Hat Insights.
+That completes this exercise on integrating Event-Driven Ansible with Red Hat Insights.
 
 
