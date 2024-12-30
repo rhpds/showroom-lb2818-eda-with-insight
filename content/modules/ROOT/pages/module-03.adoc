@@ -76,7 +76,7 @@ image::hybrid-cloud-rhel-inventory-search.jpg[Inventory]
 image::hybrid-cloud-rhel-inventory-search-keyword.jpg[Inventory keyword]
 
 
-... From the inventory you should see your host listed as node1.{guid}{subdomain_base_suffix}, 
+... From the inventory you should see your host listed as node1.{guid}.internal, 
 +
 [NOTE]
 ====
@@ -107,11 +107,12 @@ Since Insights malware detection had never been run before on this system the ma
 
 Inside the file we made following changes:
 
+[source,text]
+----
 test_scan: false
-
 filesystem_scan_only:
-
 - /home
+----
 
 This setting will scan only the /home directory and will greatly increase the speed of the scan.
 If it is not set then Malware detection will scan the whole file system and the scan will take several minutes to complete (with this setting the scan takes about 10 seconds to complete).
@@ -130,7 +131,6 @@ This set of test files includes 4 different files that test the detection of mal
 .. You need to login to insight host to set up Malware Detection as follows
 ... Click on right side browser based terminal window and enter following to login
 ... ssh {bastion_ssh_user_name}@bastion.{guid}{subdomain_base_suffix}
-... {bastion_public_hostname}
 ... Enter following password when promted: {bastion_ssh_password}
 ... ssh node1.{guid}.internal
 
@@ -144,11 +144,8 @@ cd $HOME
 [source,shell]
 ----
 curl https://secure.eicar.org/eicar.com -o /home/lab-user/eicar.com <1>
-
 curl https://secure.eicar.org/eicar.com.txt -o /home/lab-user/eicar.com.txt <2>
-
 curl https://secure.eicar.org/eicar_com.zip -o /home/lab-user/eicar_com.zip <3>
-
 curl https://secure.eicar.org/eicarcom2.zip -o /home/lab-user/eicar_com2.zip <4>
 ----
 
