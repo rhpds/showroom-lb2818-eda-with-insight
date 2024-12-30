@@ -110,6 +110,7 @@ Inside the file we made following changes:
 test_scan: false
 
 filesystem_scan_only:
+
 - /home
 
 This setting will scan only the /home directory and will greatly increase the speed of the scan.
@@ -121,7 +122,7 @@ If it is not set then Malware detection will scan the whole file system and the 
 +
 [NOTE]
 ====
-More information about eicar is available here if you would like to learn more: https://www.eicar.org/download-anti-malware-testfile/
+More information about eicar is available here if you would like to learn more: https://www.eicar.org/download-anti-malware-testfile/[window=_blank]
 
 This set of test files includes 4 different files that test the detection of malware in 4 different ways. On your host we will use the curl command to copy the files from the eicar webpage onto your host.
 ====
