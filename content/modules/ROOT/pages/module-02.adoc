@@ -1,144 +1,130 @@
 :imagesdir: ../assets/images
 
-= Red Hat Insight
 
-
-== Red Hat Hybrid Cloud Console
-
-. To setup insight trigger log into the Red Hat Hybrid Cloud console.
-+
-****
-[upperalpha]
-.. Log in with the following details:
-... URL: {hybrid_cloud_url}
-... User:	{hybrid_cloud_username}
-... Password: {hybrid_cloud_password}
-+
-NOTE: This user has limited permissions in the Hybrid Cloud Console, and while they can complete all of the activities in this lab exercise, there are certain capabilities that they will not have - this is expected and is done by design to provide a positive lab experience for all users.
-
-****
-
-. Get Event stream URL
+== Red Hat Event-Driven Ansible
+. Get the Event Stream URL from Event-Driven Ansible to link Red Hat Insights with Event-Driven Ansible for triggering automation tasks based on events.
 +
 ****
 [upperalpha]
 
-.. Next we need to get the Event stream URL and copy it for use in setting up your integration with Insights.
+.. To get the Event Stream URL from Event-Driven Ansible, follow these steps.
 
-... Go to Automation Decisions → Event Streams
-... On the Details tab, locate the URL.  
-... Click the copy button to copy the URL to the clipboard.
-
-+
-NOTE: With this URL copied to your clipboard we will log into the Red Hat Hybrid Cloud Console, in the following steps, to create an Event-driven Ansible integration which will send detected events from the console to Event-driven Ansible.  
-
+* Navigate to the *Automation Decisions → Event Streams* section from the sidebar.
+* Click *Red Hat Insights Event Steam* and then *Details* tab.
+* Copy the Event Stream URL associated with that stream.
 +
 .Event-Driven event steam (Example)
 image::eda-event-stream-url.jpg[Event Stream]
 
++
+NOTE: With the Event Stream URL copied to your clipboard, we will now log into the Red Hat Hybrid Cloud Console in the next steps to set up an integration with Event-Driven Ansible, enabling detected events from the console to be sent to Event-Driven Ansible. 
 ****
 
 
-. Creating Hybrid Cloud Console Integrations
+== Red Hat Hybrid Cloud Console Integrations
+
+. To set up the Insight trigger, log in to the Red Hat Hybrid Cloud Console using the following credentials:
 +
 ****
 [upperalpha]
-.. To create an integration with Event Driven Ansible after login into Red Hat Hybrid Cloud Console, follow the steps given below.
+.. Log details:
+* *Console URL:* {hybrid_cloud_url}
+* *Username:*	{hybrid_cloud_username}
+* *Password:* {hybrid_cloud_password}
 
-... Click the gear icon in the upper right hand corner, then click integrations.
++
+NOTE: This user has limited permissions in the Red Hat Hybrid Cloud Console. While they can complete all the activities in this lab exercise, certain capabilities may not be accessible. This is by design to ensure a positive and consistent lab experience for all users.
+
+****
+
+. To create an integration with Event-Driven Ansible, log into the Red Hat Hybrid Cloud Console and follow the steps below.
++
+****
+[upperalpha]
+.. Click the gear icon in the upper-right corner, and then select Integrations.
 +
 .Hybrid Cloud menu
 image::hybrid-cloud-integration-gear.jpg[Integration Gear]
 
-... Click the Reporting & Automation tab.
+.. Click the Reporting & Automation tab.
 +
 .Reporting and Automation Option
 image::hybrid-cloud-integration-reporting-automation.jpg[Reporting and Automation]
 
-... Click Add integration.
-
-... Select Event-Driven Ansible and click Next
+.. Click *Add integration* and Select *Event-Driven Ansible* then click Next
 +
 .Event-Driven Ansible integration
 image::hybrid-cloud-integration-eda.jpg[Event-Driven Ansible]
 
-... Enter integration details, as give below
-[loweralpha]
-.... Name: {guid}-EDAIntegration
+.. Enter integration details, as follows:
 +
-[NOTE]
-====
-Your RHEL host has a unique ID called a bastion ID.  Use this ID to uniquely identify your integration.  This is necessary since the Hybrid Cloud Console is a shared environment with other lab users. 
-====
-
-.... Endpoint URL: --<Paste Event Stream URL>--
+* *Integration name:* {guid}-EDAIntegration
 +
-[NOTE]
-====
-This is the event stream URL that you copied at the end of the last exercise.
-====
+IMPORTANT: Please ensure you enter the exact same name as provided above to uniquely identify your integration. This is important, as the Hybrid Cloud Console is a shared environment with other lab users.
 
-.... Secret token: {hybrid_cloud_password}
+* *Endpoint URL:* --<Paste Event Stream URL>--
++
+TIP: Please paste the Event Stream URL that you copied in the previous steps.
+
+* *Secret token:* {hybrid_cloud_password}
 +
 .Integration Details page
 image::hybrid-cloud-integration-configuration.jpg[Event-Driven Ansible]
 
-... Click Next
-... Review the settings and click Submit.
+* Click Next and Review the settings then click Submit.
 
 ****
 
-. Test the integration
+=== Test the Red Hat Hybrid Cloud Console integrations
+
+. To test, locate the *{guid}-EDAIntegration* integration you just created in the Red Hat Hybrid Cloud Console
 +
 ****
 [upperalpha]
-.. To test, Locate the integration that you just created.
-... Click the 3 vertical dots located at the end of the row.
-... Click Test from the menu.
+.. Click the three vertical dots at the end of the row, then select Test from the menu to test the integration.
 +
 .Test integration
 image::hybrid-cloud-integration-test-menu.jpg[Test Menu]
 
-... To send a test from the Hybrid Cloud Console to the Event-Driven Ansible instance, click Send.
+.. To send a test message from the Red Hat Hybrid Cloud Console to the Event-Driven Ansible instance, click Send.
 +
 .Send Test Message
 image::hybrid-cloud-integration-test-msg.jpg[Test Message]
 +
-NOTE: A message will appear in the upper right corner of the screen.  Click the hyperlink to be taken to the event log.
+NOTE: A message will appear in the upper-right corner of the screen. Click the hyperlink to view the event log if you'd like to check the details.
 +
-TIP: the direct URL to the event log is: https://console.redhat.com/settings/notifications/eventlog[window=_blank]
+TIP: The direct URL to the event log is: https://console.redhat.com/settings/notifications/eventlog[window=_blank]
 +
-WARNING: If you receive an error message, double check your Event-Driven Ansible URL and Token to make sure they were entered correctly.
+WARNING: If you receive an error message, please double-check your Event steam URL and Token to ensure they were entered correctly.
+****
 
-.. Return to the Ansible Automation Platform environment to verify that Event-Driven Ansible received your test event.
-+ 
-NOTE: you may find that you have been logged out and you might be required to sign back in.
+. To verify that Event-Driven Ansible received your test event, log in to the Ansible Automation Platform console and check the Event Streams for the triggered event.
++
+****
+[upperalpha]
 
-... You may already be in the Event-Driven Ansible area from where you copied the event stream URL earlier. If not, go to *Automation Decisions → Event Streams*
+TIP: If you're logged out, you may need to sign back in to continue.
 
-... Click the *Red Hat Insights Event Stream*
-
-... You should notice that there is an event received.
+.. Navigate to the Automation Decisions → Event Streams section from the sidebar.
++
+* Click Red Hat Insights Event Steam and then Details tab.
+* You should notice that there is an event received.
 +
 .Check Event received
 image::eda-event-stream-event-received.jpg[Event Received]
 ****
 
+=== Red Hat Hybrid Cloud Console Notifications
 
 . Configuring Hybrid Cloud Console Notifications 
 +
+NOTE: At this point you have a tested connection between your Event-Driven Ansible instance and the Hybrid Cloud Console. Now we need to tell the console what type of events we want to send to Event-Driven Ansible. This is done through notifications.
+
+. In the following steps, we will set up a notification to send Red Hat Enterprise Linux Malware Detection events to Event-Driven Ansible for processing with a rulebook.
++
 ****
 [upperalpha]
-
-[NOTE]
-====
-At this point you have a tested connection between your Event-Driven Ansible instance and the Hybrid Cloud Console.
-Now we need to tell the console what type of events we want to send to Event-Driven Ansible.
-This is done through notifications.
-====
-[upperalpha]
-.. We are going to set up a notification to send Red Hat Enterprise Linux Malware Detection events onto Event-Driven Ansible for processing with a rulebook.
- ... On the left hand navigation bar, click Notifications and then click Configure Events.
+.. On the left hand navigation bar, click Notifications and then click Configure Events.
 +
 .Notification
 image::hybrid-cloud-notification.jpg[Notification]
@@ -153,24 +139,27 @@ Configuration shows you the different event types that are generated for Red Hat
 These are defined by the services - you cannot create new event types.
 
 Behavior Groups allows you to group types of notifications together.  
-
 ====
-.. You are going to create a new behavior group for Red Hat Enterprise Linux that sends Malware Detection events to your Event-Driven Ansible integration that you created.
+****
 
-... Click Behavior Groups and then click Create new group
+. In the following step, we will create a new behavior group for Red Hat Enterprise Linux that sends Malware Detection events to the Event-Driven Ansible integration you set up.
++
+****
+[upperalpha]
+.. Click Behavior Groups and then click Create new group
 +
 .Create Behavior Groups
 image::hybrid-cloud-notification-BehaviorGroup.jpg[Create Behavior Groups]
 
-... In the wizard, complete the following:
-.... Enter Behavior Group Name: *{guid}-BehaviorGroup* and click next
+.. In the wizard, please complete the following steps:
++
+* Enter Behavior Group Name: *{guid}-BehaviorGroup* and click *next*
 +
 .Behavior Groups Name
 image::hybrid-cloud-notification-BehaviorGroup-1.jpg[Behavior Groups Name]
 
-.... Under Actions from the drop down box select *Integration: Event-Driven Ansible*
-.... Under Recipient from the drop down box select your integration.
-This should be: *{guid}-EDAIntegration* and click next.
+* Under Actions from the drop down box select *Integration: Event-Driven Ansible*
+* Under Recipient from the drop down box select *{guid}-EDAIntegration* then click next.
 +
 .Behavior Groups Action and Recipient
 image::hybrid-cloud-notification-BehaviorGroup-2.jpg[Behavior Groups Action and Recipient]
@@ -178,14 +167,14 @@ image::hybrid-cloud-notification-BehaviorGroup-2.jpg[Behavior Groups Action and 
 NOTE: Additional actions can be added to a behavior group.  As an example, it is possible to have the same group sending data to Event-Driven Ansible, Slack, ServiceNow, Microsoft Teams, and a generic webhook. You'll just be configuring the Event-Driven Ansible integration at this time.
 
 
-.... Under Associate event types, in the *“Filter by event type” box type malware*. You.ll see the event type of *“Detected Malware”*. Check the box to the left of this event type then Click Next.
+* Under Associate event types, in the *“Filter by event type”* box, type *malware*. You will see the *“Detected Malware”* event type. Check the box next to this event type, then click Next.
 +
 .Behavior Groups Action and Recipient
 image::hybrid-cloud-notification-BehaviorGroup-3.jpg[Behavior Groups Action and Recipient]
 
-.... Review and click finish.
-
-NOTE: At this point you have created an integration and a behavior group in the Hybrid Cloud Console.
+* Review then click finish.
 
 ****
+
+At this point you have created an integration and a behavior group in the Red Hat Hybrid Cloud Console.
 
