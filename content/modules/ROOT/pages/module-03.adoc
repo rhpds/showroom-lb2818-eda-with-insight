@@ -3,40 +3,36 @@
 = Trigger and Verify the Event
 
 == Rulebook Activation
-. Event-Driven Ansible Rulebook Activation
+. The next thing we need to do is to create a rulebook activation as follows.
 +
 ****
 [upperalpha]
-.. The next thing we need to do is create a rulebook activation.
-
-... While still in the Automation Decisions area, click Rulebook Activations on the left hand navigation bar and then Click Create rulebook activation
+.. While still in the Automation Decisions area, click Rulebook Activations on the left hand navigation bar and then Click Create rulebook activation
 +
 .Go to Rulebook Activation
 image::eda-rulebook.jpg[Rulebook Activation]
 
-... Fill Create rulebook activation form as per details given below
+.. Please fill out the Create Rulebook Activation form using the following details:
 +
-|===
-| Name | RH Insights rulebook
-| Description | Red Hat Insights rulebook
-| Organization | Default
-| Project | RH Insights
-| Rulebook | insights-eda-malware-rulebook.yml
-| Event streams |  Click the gear to open the event streams dialog, Review and click save
-| Credential | Insights_AAP
-| Decision environment | Default Decision Environment
-| Restart policy | On failure
-| Log level | Error
-| Service name | <leave this blank>
-| Rulebook activation enabled? | Enabled
-| Variables | <leave this blank>
-| Skip audit events | Disabled (unchecked)
-|===
+* *Name:* RH Insights rulebook
+* *Description:* Red Hat Insights rulebook
+* *Organization:* Default
+* *Project:* RH Insights
+* *Rulebook:* insights-eda-malware-rulebook.yml
+* *Event streams:*  Click the gear to open the event streams dialog, Review and click save
+* *Credential:* Insights_AAP
+* *Decision environment:* Default Decision Environment
+* *Restart policy:* On failure
+* *Log level:* Error
+* *Service name:* <leave this blank>
+* *Rulebook activation enabled?:* Enabled
+* *Variables:* <leave this blank>
+* *Skip audit events Disabled:* (unchecked)
+* Click Create rulebook activation
 +
 .Go to Rulebook Activation
 image::eda-rulebook-activation.jpg[Rulebook Activation]
 
-... Click Create rulebook activation
 +
 NOTE: This action will take several minutes.  You do not need to wait for it to complete.
 
@@ -63,20 +59,20 @@ We used the rhc command (remote host configuration) which wraps the subscription
 IMPORTANT: Your host (node1) is already connected to Red Hat Insights.
 
 .. Return to Hybrid Cloud Console {hybrid_cloud_url}.
-
-... Click the search bar at the top (the magnifying glass)
++
+* Click the search bar at the top (the magnifying glass)
 +
 .Search Inventory
 image::hybrid-cloud-rhel-inventory-search.jpg[Inventory]
 
 
-... In the search box, type "Inventory". You should see several results in the drop down box, select *Inventory | RHEL*
+* In the search box, type "Inventory". You should see several results in the drop down box, select *Inventory | RHEL*
 +
 .Search Keyworkd
 image::hybrid-cloud-rhel-inventory-search-keyword.jpg[Inventory keyword]
 
 
-... From the inventory you should see your host listed as node1.{guid}.internal, 
+* From the inventory you should see your host listed as node1.{guid}.internal, 
 +
 [NOTE]
 ====
@@ -110,8 +106,7 @@ Inside the file we made following changes:
 [source,text]
 ----
 test_scan: false
-filesystem_scan_only:
-- /home
+filesystem_scan_only: [/home]
 ----
 
 This setting will scan only the /home directory and will greatly increase the speed of the scan.
@@ -129,10 +124,11 @@ This set of test files includes 4 different files that test the detection of mal
 ====
 
 .. You need to login to insight host to set up Malware Detection as follows
-... Click on right side browser based terminal window and enter following to login
-... ssh {bastion_ssh_user_name}@bastion.{guid}{subdomain_base_suffix}
-... Enter following password when promted: {bastion_ssh_password}
-... ssh node1.{guid}.internal
++
+* Click on right side browser based terminal window and enter following to login
+* ssh {bastion_ssh_user_name}@bastion.{guid}{subdomain_base_suffix}
+* Enter following password when promted: {bastion_ssh_password}
+* ssh node1.{guid}.internal
 
 .. To download eicar files in the user's home, run the following command.
 +
@@ -234,18 +230,18 @@ Looking next to the exclamation mark you will see the number of matched signatur
 Malware detection signatures can be disabled in the event that a false positive is detected, but your user account in this lab does not have the permissions to enable or disable signatures.
 ====
 
-... Scroll down the page and you will see the matched signature - *XFTI_EICAR_AV_Test*
+* Scroll down the page and you will see the matched signature - *XFTI_EICAR_AV_Test*
 
-... Click on *XFTI_EICAR_AV_Test*. You will see the details of the signature and which systems have matched this malware.
+* Click on *XFTI_EICAR_AV_Test*. You will see the details of the signature and which systems have matched this malware.
 
-... Locate your system node1.{guid}{subdomain_base_suffix}.
+* Locate your system node1.{guid}.internal.
 +
 [NOTE]
 ====
 You should notice that you have the date of the last match and the total number of matches. The total number of matches should be 4 assuming that you only ran the commands as described in the exercise - that is because the eicar package included 4 test files - one match for each of the files.
 ====
 
-... Click the arrow to the left of your system's name to expand the details.
+* Click the arrow to the left of your system's name to expand the details.
 +
 [NOTE]
 ====
@@ -254,9 +250,9 @@ Here you can see the details of the match. You can download this as a text file 
 If you look through the output you should see 4 different “Match Source” entries - one for each of the eicar files that you put onto the system.
 ====
 
-... Since you detected some Malware (even though it is just a test), this should have generated an event. Go to the event log and verify that an event was created: https://console.redhat.com/settings/notifications/eventlog[window=_blank]
+* Since you detected some Malware (even though it is just a test), this should have generated an event. Go to the event log and verify that an event was created: https://console.redhat.com/settings/notifications/eventlog[window=_blank]
 
-... You should see an event type of Detected Malware with the Integration: Event-Driven Ansible.
+* You should see an event type of Detected Malware with the Integration: Event-Driven Ansible.
 
 ****
 
