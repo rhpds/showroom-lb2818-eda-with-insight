@@ -3,7 +3,7 @@
 
 = Discovering Lab Environments and Product Insights
 
-In this workshop, we have installed and configured several products to demonstrate the Event-Driven capabilities effectively. To complete the workshop, we will explore the products used by opening a few browser tabs as listed below:
+In this workshop, we have installed and pre-configured several products to demonstrate the Event-Driven capabilities effectively. To complete the workshop, we will explore the products used by opening a few browser tabs as listed below:
 
 * VS Code Server
 * Red Hat Ansible Automation Platform
@@ -59,9 +59,9 @@ NOTE: This user has limited permissions in the Red Hat Hybrid Cloud Console. Whi
 ****
 
 === Explore Automation Execution
-Let's take a moment to explore the Automation Execution Environment that has already been configured for this lab. This step is entirely optional, and you may skip it and proceed to the next page. However, gaining an understanding of the pre-configured setup can be helpful for the upcoming lab exercises.
+Let's take a moment to explore the Automation Execution that has already been configured for this lab. 
 
-. Automation Execution Projects, The following projects have been pre-configured for this lab. For more details, navigate to *Automation Execution → Projects*.
+. The following projects have been pre-configured for this lab. For more details, navigate to *Automation Execution → Projects*.
 +
 ****
 [upperalpha]
@@ -70,51 +70,77 @@ Let's take a moment to explore the Automation Execution Environment that has alr
 
 ****
 
-. Credentials
-Go to Automation Execution → Infrastructure → Credentials 
-.. Openshift Credentials
-.. Host Credentials
-.. RH Insights Lab User
+. The following credentials have been pre-configured for this lab. For more details, navigate to *Automation Execution → Infrastructure → Credentials*.
++
+****
+[upperalpha]
+.. *Openshift Credentials* - Contains Red Hat OpenShift API Bearer Token.
+.. *Host Credentials* - Machine credentials to connect with nodes.
+.. *RH Insights Lab User* - Red Hat Hybrid Cloud Console credentials to connect with Red Hat Insights.
+****
 
-. Inventories
-Go to Automation Execution → Infrastructure → Inventories
-.. RH Insights inventory
-.. Click sources tab 
-.. Insights source
+. The following inventories have been pre-configured for this lab. For more details, navigate to *Automation Execution → Infrastructure → Inventories*.
++
+****
+[upperalpha]
+.. *RH Insights inventory* - This is a Dynamic Inventory with Red Hat Insights as its source, fetching all connected hosts into the inventory.
+.. Click the *RH Insights inventory* - To explore about the inventory
+.. Then click *Hosts* tab - At this stage, you will see no other hosts.
+.. Now click *Sources* tab and then click the *rocket icon* - To initiate the inventory update.
+.. Once status is changed to *Success* return to *Hosts* tab - To view the entries from the Red Hat Insights inventory, you may need to wait for a while or refresh the page to see the updated information.
+****
 
-. Hosts
-Go to Automation Execution → Infrastructure → Hosts
-
-. Templates
-Go to Automation Execution → Templates
-.. create-volume-snapshot
-.. patch-route-with-cert
-.. set-resource-quota-on-namespace
-.. handle-malware-detection
+. The following templates have been pre-configured for this lab. For more details, navigate to *Automation Execution → Templates*.
++
+****
+[upperalpha] 
+.. *create-volume-snapshot* - This Job Template is triggered whenever a new Persistent Volume Claim (PVC) is created in Red Hat OpenShift, automatically creating a snapshot for the PVC.
+.. *patch-route-with-cert* - This Job Template is triggered whenever a new unsecured route is created in Red Hat OpenShift, enabling the implementation of an SSL certificate for the route.
+.. *set-resource-quota-on-namespace* - This Job Template is triggered whenever a new namespace is created in Red Hat OpenShift, automatically setting the resource quota for the namespace. 
+.. *handle-malware-detection* - This Job Template is triggered whenever Red Hat Insights detects malware on a node, initiating the necessary remediation actions.
+****
 
 === Explore Automation Decision
-. Projects
-Go to Automation Decisions → Projects 
-.. OpenShift Event Rulebooks
-.. RH Insights
+Let's take a moment to explore the Automation Decision that has already been configured for this lab. This step is entirely optional, and you may skip it and proceed to the next page. However, gaining an understanding of the pre-configured setup can be helpful for the upcoming lab exercises.
 
-. Credentials
-Go to Automation Decisions → Infrastructure → Credentials 
-.. RHInsights
-.. registry.redhat.io
-.. RH AAP Credential
+. The following projects have been pre-configured for this lab. For more details, navigate to *Automation Decisions → Projects*.
++
+****
+[upperalpha] 
+.. *OpenShift Event Rulebooks*
+.. *RH Insights*
+****
 
-. Decision Environments
-Go to Automation Decisions → Decision Environments
-.. AAP2.5 - OCP4 Custom Decision
+. The following credentials have been pre-configured for this lab. For more details, navigate to *Automation Decisions → Infrastructure → Credentials*.
++
+****
+[upperalpha]
+.. *RHInsights*
+.. *registry.redhat.io*
+.. *RH AAP Credential*
+****
 
-. Event Steams
-Go to Automation Decisions → Event Streams
-.. Red Hat Insights Event Stream
+. The following Decision Environments have been pre-configured for this lab. For more details, navigate to *Automation Decisions → Decision Environments*.
++
+****
+[upperalpha]
+.. *Default Decision Environment*
+.. *AAP2.5 - OCP4 Custom Decision*
+****
 
-. Rulebook Activations
-Go to Automation Decisions → Rulebook Activations
-.. Create Volume Snapshot
-.. Set Resource Quota On Namespace
-.. Patch Route With Cert
+. The following Event Streams have been pre-configured for this lab. For more details, navigate to *Automation Decisions → Event Streams*. 
++
+****
+[upperalpha]
+.. *Red Hat Insights Event Stream*
+****
+
+. The following Rulebook Activations have been pre-configured for this lab. For more details, navigate to *Automation Decisions → Rulebook Activations*.
++
+****
+[upperalpha]
+.. *Create Volume Snapshot* - 
+.. *Set Resource Quota On Namespace*
+.. *Patch Route With Cert*
+****
 
