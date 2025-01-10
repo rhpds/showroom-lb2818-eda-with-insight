@@ -1,0 +1,305 @@
+:imagesdir: ../assets/images
+= Discovering Lab Environments and Product Insights
+
+In this workshop, we have installed and configured several products to demonstrate the Event-Driven capabilities effectively. To complete the workshop, we will explore the products used by opening a few browser tabs as listed below:
+
+* VS Code Server
+* Red Hat Ansible Automation Platform
+* Red Hat OpenShift Console
+* Red Hat Hybrid Cloud Console
+
+== VS Code Server
+. Log in to the VS Code Server, where we will use the integrated terminal to execute oc commands. These commands will create OpenShift resources, which will subsequently trigger events during the lab exercise.
++
+****
+[upperalpha]
+.. Login Details:
+* *VS Code Server URL:* https://bastion.{guid}{subdomain_base_suffix}[window=_blank]
+* *Password:* {bastion_ssh_password}
+****
+
+== Red Hat Ansible Automation Platform
+. Log in to Ansible Automation Platform 2.5 to explore Automation Execution and Automation Decisions, which will play a key role in the Event-Driven Ansible triggers in the upcoming labs.
++
+****
+[upperalpha]
+.. Login Details:
+* *Ansible Automation Platfrom URL:* {aap_controller_web_url}[window=_blank]
+* *Username:* {aap_controller_admin_user}
+* *Password:* {aap_controller_admin_password}
+****
+
+== Red Hat OpenShift Console
+. Optionally, you can log in to the Red Hat OpenShift Console to explore the resources that are already installed and configured. This also allows you to verify the impact of the Event-Driven triggers that will occur in the upcoming labs.
++
+****
+[upperalpha]
+.. Login Details:
+* *Red Hat OpenShift Console URL:* {openshift_cluster_console_url}[window=_blank]
+* Click *htpasswd_provider* then enter username & password
+* *Username:* {openshift_cluster_admin_username}
+* *Password:* {penshift_cluster_admin_password}
+****
+
+== Red Hat Hybrid Cloud Console
+. Log in to the Red Hat Hybrid Cloud Console, as we will use it to create Event-Driven Integrations, Notifications, and Triggers in the upcoming labs.
++
+****
+[upperalpha]
+.. Log details:
+* *Console URL:* {hybrid_cloud_url}
+* *Username:*	{hybrid_cloud_username}
+* *Password:* {hybrid_cloud_password}
+
++
+NOTE: This user has limited permissions in the Red Hat Hybrid Cloud Console. While they can complete all the activities in this lab exercise, certain capabilities may not be accessible. This is by design to ensure a positive and consistent lab experience for all users.
+****
+
+=== Say Do
+
+.Trigger Events
+[width=100%,cols="^.5%,30%a,65%a",options="header"]
+|====
+| SR No ^.^| Say ^.^| Do
+
+|{counter:srn}|
+[.text-justify]
+In order to show demo, We need to open couple of browser tabs for-
+
+* Vscode server 
+* Ansible Automation Platform
+** Automation Controller
+** Event Driven Ansible
+* [Optional] OpenShift Console
+
+[.text-justify]
+*demo.redhat.com* Info page contains all of the access details.
+
+|*Action:*
+[.text-justify]
+.  Go to the info page click on VScode server link, use password provided in the table to login. 
+
++
+image:vscode_login.jpg[VScode Login page, 95%]
+
+.  Go to info page click on Ansible Automation Platform link, use username and password provided in the table to login. 
+
++
+NOTE: Sometimes copying and pasting the password may not work. If you're unable to log in, try typing the password manually, character by character, as this might resolve the issue.
+
++
+image:ac_login.jpg[Automation Controller Login page, 95%]
+
+
+.  [Optionally] Go to info page click on OpenShift Console  link, use username and password provided in the table to login. 
++
+.Click htpasswd_provider
+image:oc_login_1.jpg[OpenShift Login page, 95%]
++
+.Login
+image:oc_login_2.jpg[OpenShift Login page, 95%]
+
+
+
+|{counter:srn}|
+[.text-justify]
+Log in to the Ansible Automation Platform to monitor jobs and triggered events.
+|*Action:*
+[.text-justify]
+.  Go to the Automation Execution (Automation Controller) and click on jobs. Jobs section will show all triggered job templates status by the Event-driven Ansible.
++
+image:ac_jobs.jpg[Automation Controller Jobs, 95%]
+
+
+.  Go to the Automation Decision (Event Driven Aansible) and click on Rulebook Activations . The Rulebook Activations section shows all Rulebook Activations.
++
+image:eda_rulebook_activations_v2.png[Event-Driven Ansible Controller Rulebooks, 95%]
+
+
+|{counter:srn}|
+[.text-justify]
+Prepare VScode server console to create openshift resources and trigger Event-driven Ansible rulebooks.
+
+|*Action:*
+[.text-justify]
+.  Go back to the VScode server console and open a terminal.
++
+image:vscode_login_terminal.jpg[VScode terminal, 95%]
+
+|{counter:srn}|
+[.text-justify]
+In order to trigger a set resource quota on a new namespace (rocketchat) by Event-driven ansible event.
+
+[.text-justify]
+We goto integrated terminal of vscode server then change to test-events directory. This directory contains three yaml files which contain OpenShift object definition.
+
+[.text-justify]
+To trigger set resource quota, we run oc command with 1-test-resource-quota-on-namespace.yml file which creates rocketchat namespace  in  OpenShift. 
+
+[.text-justify]
+New namespace creation will eventually trigger a set resource quota event. As an action for the event it will set resource quota on created rocketchat namespace.
+ 
+[.text-justify]
+To observe, we can check Automation Decision (Event Driven Aansible) Rulebook Activate and Automation Execution (Automation Controller) jobs.
+
+[.text-justify]
+To verify the changes run OpenShift oc command line to check resource quota on created rocketchat namespace. 
+
+|*Action:*
+[.text-justify]
+.  Go to the vscode integrated terminal, Change the directory and run oc command to create  namespace (rocketchat) which will eventually trigger the event.
+
++
+[source,shell]
+----
+cd $HOME/demo/test-events/
+oc create -f 1-test-resource-quota-on-namespace.yml
+----
+
++
+image:eda_vscode_terminal.jpg[VScode terminal, 100%]
+
+*Observe:*
+[.text-justify]
+. Observe Automation Decision (Event Driven Aansible) Set Resource Quota On Namespace Rulebook Activation has caught the event for new namespace and triggered the action. 
+
+
+
+// . Click on Set Resource Quota on Namespace Rulebook Activation.
+
++
+image:eda_trigger_1.jpg[Rulebook Trigger, 95%]
+
+// . Click on History.
+
+// +
+// image:eda_trigger_2.jpg[Rulebook Trigger, 95%]
+
+// . Now click on Set Resource Quota on Namespace to view the EDA event logs.
+// +
+// image:eda_trigger_3.jpg[Rulebook Trigger, 95%]
+
+. Observe the Automation Execution (Automation Controller) has a new job running.
++
+image:rq_ac_job.jpg[Automation Controller Job, 95%]
+
+
+. Observe that the new namespace (rocketchat) has a quota set.  Run the following command on the second terminal. 
+
++
+[source,shell]
+----
+oc get resourcequota -n rocketchat
+----
+
+
+
+|{counter:srn}|
+[.text-justify]
+In order to trigger a create volume snapshot of newly added pvc by Event-driven ansible event.
+
+[.text-justify]
+We go to the terminal and make sure we are still in the test-events directory which contains three yaml files of OpenShift object definition.
+
+[.text-justify]
+To trigger the create volume snapshot, we run oc command with 2-test-volume-snapshot.yml file which creates rocketchat app, database and persistent volume claim in rocketchat namespace.
+
+[.text-justify]
+New persistent volume claim creation will eventually trigger a create volume snapshot event. As an action for the event it will create a snapshot of the persistentvolumeclaim in the  rocketchat namespace.
+ 
+[.text-justify]
+To observe, we can check Automation Decision (Event Driven Aansible) Rulebook Activate and Automation Execution (Automation Controller) jobs.
+
+[.text-justify]
+To verify the changes run OpenShift oc command to get the volume snapshot list in  rocketchat namespace. 
+
+|*Action:*
+[.text-justify]
+.  Go to the VScode terminal, Change the directory and run oc command to create  the rocketchat application in the rocketchat namespace which will eventually trigger the event.
++
+[source,shell]
+----
+cd $HOME/demo/test-events/
+oc create -f 2-test-volume-snapshot.yml
+----
+
+
+*Observe:*
+[.text-justify]
+.   Observe Automation Decision (Event Driven Aansible) Create Volume Snapshot Rulebook Activation has caught the event for new persistentvolumeclaim which triggered the action.
+
+.  Observe the Automation Execution (Automation Controller) has a new job running.
+
+.  Observe that the new persistentvolumeclaim has a screenshot  in rocketchat namespace.  Run the following command on the second terminal. 
++
+[source,shell]
+----
+oc get volumesnapshot -n rocketchat
+----
+
+
+|{counter:srn}|
+
+[.text-justify]
+In order to trigger a patch route of newly added route by Event-driven ansible event.
+[.text-justify]
+We go to the terminal and make sure we are still in the test-events directory which contains three yaml files of OpenShift object definition.
+[.text-justify]
+To trigger the patch route, we run oc command with 3-test-route-with-cert.yml file which creates route for rocketchat app in rocketchat namespace.
+[.text-justify]
+New route creation will eventually trigger a patch route event. As an action for the event it will patch the route with a signed certificate in the  rocketchat namespace.
+[.text-justify]
+To observe, we can check Automation Decision (Event Driven Aansible) Rulebook Activate history and Automation Execution (Automation Controller) jobs.
+
+[.text-justify]
+To verify the changes run OpenShift oc command to get the route in rocketchat namespace. 
+
+
+|*Action:*
+[.text-justify]
+.  Go to the VScode terminal, Change the directory and run oc command to create the route for rocketchat application in the rocketchat namespace which will eventually trigger the event.
+
++
+[source,shell]
+----
+cd $HOME/demo/test-events/
+oc create -f 3-test-route-with-cert.yml
+----
+
+
+*Observe:* 
+[.text-justify]
+. Observe Automation Decision (Event Driven Aansible) Patch Route With Cert Rulebook Activation has caught the event for the new route and triggered the action.
+
+. Observe the Automation Execution (Automation Controller) has a new job running.
+
+. Observe that the new route has been patched  with a certificate.  Run the following command on the terminal.
+
++
+[source,shell]
+----
+oc get route -n rocketchat -o yaml \| grep cert-manager
+----
+
+
+|====
+
+
+== Troubleshooting
+
+=== Source Code
+* Rulebook/Playbook Repository
+** link:https://github.com/redhat-gpte-devopsautomation/demo-event-driven-ansible[Event Driven Ansible Provision Repository]
+
+* Custom Event-Driven Plugin
+** link:https://github.com/sabre1041/sabre1041.eda[sabre1041.eda.k8s]
+
+* Decision Environment 
+** link:https://github.com/miteshget/eda-de[Build Custom Decision Environment (DE)]
+
+=== Help & Support
+* Slack Channel
+** link:https://app.slack.com/client/E030G10V24F/C07M6BWRQCF[#event-driven-ansible-with-openshift-demo]
+
+
+
