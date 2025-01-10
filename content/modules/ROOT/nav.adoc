@@ -1,4 +1,5 @@
 * xref:01-discovering-lab.adoc[1. Discovering Lab Environment]
+* xref:01-module.adoc[2. Trigger Red Hat OpenShift Events]
 * xref:module-01.adoc[1. Red Hat Ansible Automation Platform]
 * xref:module-02.adoc[2. Red Hat Insights]
 * xref:module-03.adoc[3. Trigger The Event]

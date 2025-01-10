@@ -34,7 +34,7 @@ A rulebook is our strategic playbook, constituted of three fundamental component
 
 This rulebook, therefore, provides a comprehensive, customizable, and extensible blueprint for your automation processes, ensuring we cover the full spectrum from event sources to reactive actions.
 
-==== The Business Benefits of Event-Driven Ansible
+=== The Business Benefits of Event-Driven Ansible
 In the course of this demo, we will delve into the manifold business benefits you can achieve by implementing Event-Driven Ansible:
 
 *Real-Time Responsiveness:* Automate responses to events, leading to quicker issue resolution and optimized resource utilization.
