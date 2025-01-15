@@ -30,7 +30,7 @@ In this workshop, we have installed and pre-configured several products to demon
 * *Red Hat OpenShift Console URL:* {openshift_cluster_console_url}[window=_blank]
 * Click *htpasswd_provider* then enter username & password
 * *Username:* {openshift_cluster_admin_username}
-* *Password:* {penshift_cluster_admin_password}
+* *Password:* {openshift_cluster_admin_password}
 ****
 
 == Red Hat Hybrid Cloud Console
