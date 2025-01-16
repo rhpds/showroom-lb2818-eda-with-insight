@@ -1,7 +1,6 @@
 ---
 site:
   title: Event-driven Ansible with Insights
-  url: https://redhat-scholars.github.io/course-template
   start_page: modules::index.adoc
 
 content:
