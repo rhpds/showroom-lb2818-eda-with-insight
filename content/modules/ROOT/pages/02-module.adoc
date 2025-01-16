@@ -128,6 +128,6 @@ oc create -f 3-test-route-with-cert.yml
 [upperalpha]
 [source,shell]
 ----
-oc get route -n rocketchat -o yaml \| grep cert-manager
+oc get route -n rocketchat -o yaml | grep cert-manager
 ----
 ****
