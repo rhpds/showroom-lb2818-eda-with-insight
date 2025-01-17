@@ -7,10 +7,11 @@
 
 In order to trigger a set resource quota on a new namespace (rocketchat) by Event-driven ansible event. The new namespace creation will eventually trigger a set resource quota event. As an action for the event it will set resource quota on created rocketchat namespace.
 
+[upperalpha]
 . You need to retrune VS Code Server and open integrated terminal.
 +
 ****
-[upperalpha]
+[upperroman]
 image:vscode_login_terminal.jpg[VScode terminal, 95%]
 ****
 
@@ -27,8 +28,8 @@ oc create -f 1-test-resource-quota-on-namespace.yml
 image:eda_vscode_terminal.jpg[VScode terminal, 100%]
 ****
 
-[.text-justify]
-. Observe Automation Decision (Event Driven Aansible) Set Resource Quota On Namespace Rulebook Activation has caught the event for new namespace and triggered the action. 
+
+. Observe Automation Decision (Event-Driven Ansible) Set Resource Quota On Namespace Rulebook Activation has caught the event for new namespace and triggered the action. 
 +
 ****
 [upperalpha]
@@ -43,7 +44,6 @@ image:rq_ac_job.jpg[Automation Controller Job, 95%]
 ****
 
 . Observe that the new namespace (rocketchat) has a quota set.  Run the following command on the second terminal. 
-
 +
 ****
 [upperalpha]
@@ -56,17 +56,13 @@ oc get resourcequota -n rocketchat
 
 == PVC Event to Create Volume Snapshot 
 
-In order to trigger a create volume snapshot of newly added pvc by Event-driven ansible event.
+In order to trigger a create volume snapshot of newly added pvc by Event-driven ansible event. We go to the terminal and make sure we are still in the test-events directory which contains three yaml files of OpenShift object definition.
 
-We go to the terminal and make sure we are still in the test-events directory which contains three yaml files of OpenShift object definition.
+* *To trigger the create volume snapshot* - We run oc command with 2-test-volume-snapshot.yml file which creates rocketchat app, database and persistent volume claim in rocketchat namespace. New persistent volume claim creation will eventually trigger a create volume snapshot event. As an action for the event it will create a snapshot of the persistentvolumeclaim in the rocketchat namespace.
 
-To trigger the create volume snapshot, we run oc command with 2-test-volume-snapshot.yml file which creates rocketchat app, database and persistent volume claim in rocketchat namespace.
+* *To observe and Verify* - We can check Automation Decision (Event-Driven Ansible) Rulebook Activate and Automation Execution (Automation Controller) jobs. To verify the changes run OpenShift oc command to get the volume snapshot list in rocketchat namespace.
 
-New persistent volume claim creation will eventually trigger a create volume snapshot event. As an action for the event it will create a snapshot of the persistentvolumeclaim in the rocketchat namespace.
-
-To observe, we can check Automation Decision (Event Driven Aansible) Rulebook Activate and Automation Execution (Automation Controller) jobs.
-
-To verify the changes run OpenShift oc command to get the volume snapshot list in rocketchat namespace.
+[upperalpha]
 
 . Return to the VS Code Server integrated terminal, Change the directory and run *oc* command to create  the rocketchat application in the rocketchat namespace which will eventually trigger the event.
 +
@@ -79,7 +75,7 @@ oc create -f 2-test-volume-snapshot.yml
 ----
 ****
 
-. Observe Automation Decision (Event Driven Aansible) Create Volume Snapshot Rulebook Activation has caught the event for new persistentvolumeclaim which triggered the action.
+. Observe Automation Decision (Event-Driven Ansible) Create Volume Snapshot Rulebook Activation has caught the event for new persistentvolumeclaim which triggered the action.
 
 . Observe the Automation Execution (Automation Controller) has a new job running.
 
@@ -95,17 +91,13 @@ oc get volumesnapshot -n rocketchat
 
 == Route Event to Patch Route
 
-In order to trigger a patch route of newly added route by Event-driven ansible event.
+In order to trigger a patch route of newly added route by Event-driven ansible event. We go to the terminal and make sure we are still in the test-events directory which contains three yaml files of OpenShift object definition.
 
-We go to the terminal and make sure we are still in the test-events directory which contains three yaml files of OpenShift object definition.
+* *To trigger the patch route* - We run oc command with 3-test-route-with-cert.yml file which creates route for rocketchat app in rocketchat namespace. New route creation will eventually trigger a patch route event. As an action for the event it will patch the route with a signed certificate in the rocketchat namespace.
 
-To trigger the patch route, we run oc command with 3-test-route-with-cert.yml file which creates route for rocketchat app in rocketchat namespace.
+* *To observe and Verify* - We can check Automation Decision (Event-Driven Ansible) and Automation Execution (Automation Controller) jobs. To verify the changes run OpenShift oc command to get the route in rocketchat namespace.
 
-New route creation will eventually trigger a patch route event. As an action for the event it will patch the route with a signed certificate in the rocketchat namespace.
-
-To observe, we can check Automation Decision (Event Driven Aansible) Rulebook Activate history and Automation Execution (Automation Controller) jobs.
-
-To verify the changes run OpenShift oc command to get the route in rocketchat namespace.
+[upperalpha]
 
 .  Go to the VScode terminal, Change the directory and run oc command to create the route for rocketchat application in the rocketchat namespace which will eventually trigger the event.
 +
@@ -118,7 +110,7 @@ oc create -f 3-test-route-with-cert.yml
 ----
 ****
 
-. Observe Automation Decision (Event Driven Aansible) Patch Route With Cert Rulebook Activation has caught the event for the new route and triggered the action.
+. Observe Automation Decision (Event-Driven Ansible) Patch Route With Cert Rulebook Activation has caught the event for the new route and triggered the action.
 
 . Observe the Automation Execution (Automation Controller) has a new job running.
 
