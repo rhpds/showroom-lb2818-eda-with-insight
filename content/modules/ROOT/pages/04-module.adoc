@@ -141,12 +141,11 @@ NOTE: Key based authentication is configured so we don't need password for the n
 +
 NOTE: More information about eicar is available here if you would like to learn more: https://www.eicar.org/download-anti-malware-testfile/[window=_blank]
 +
-****
-[upperroman]
 [source,shell]
 ----
 cd $HOME
 ----
++
 [source,shell]
 ----
 curl https://secure.eicar.org/eicar.com -o /home/lab-user/eicar.com <1>
@@ -154,7 +153,7 @@ curl https://secure.eicar.org/eicar.com.txt -o /home/lab-user/eicar.com.txt <2>
 curl https://secure.eicar.org/eicar_com.zip -o /home/lab-user/eicar_com.zip <3>
 curl https://secure.eicar.org/eicarcom2.zip -o /home/lab-user/eicar_com2.zip <4>
 ----
-****
+
 
 . Now, list all of the downloaded files, You should see the 4 eicar files in your home directory.
 +
