@@ -1,4 +1,4 @@
-* xref:01-discovering-lab.adoc[1. Discovering Lab Environment]
+* xref:01-module.adoc[1. Discovering Lab Environment]
 * xref:02-module.adoc[2. Trigger Red Hat OpenShift Events]
-* xref:module-02.adoc[3 Red Hat Insights]
-* xref:module-03.adoc[4. Trigger The Event]
+* xref:03-module.adoc[3. Red Hat Insights]
+* xref:04-module.adoc[4. Trigger Red Hat Insights Event]
