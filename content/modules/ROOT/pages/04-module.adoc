@@ -215,7 +215,7 @@ image::hybrid-cloud-malware-detection.jpg[Malware Detected]
 
 . Click on *XFTI_EICAR_AV_Test*. You will see the details of the signature and which systems have matched this malware.
 
-. Locate your system node1.{guid}.internal.
+. Locate your system *node1.{guid}.internal*.
 +
 [NOTE]
 ====
@@ -227,7 +227,7 @@ You should notice that you have the date of the last match and the total number 
 image::hybrid-cloud-malware-node.jpg[Node]
 ****
 
-. Click the arrow to the left of your system's name to expand the details.
+. Click the *arrow* to the left of your system's name to expand the details.
 +
 [NOTE]
 ====
@@ -251,7 +251,7 @@ image::hybrid-cloud-malware-node-details.jpg[Node]
 [upperroman]
 
 
-.. Go to *Automation Decisions → Rulebook Activations* and Observe - *RH Insights rulebook* Rulebook Activations Fire Count has been increasd.
+.. Go to *Automation Decisions → Rulebook Activations* and Observe - *RH Insights rulebook* Rulebook Activations *Fire Count* has been increasd.
 +
 ****
 .Rulebook Activation
