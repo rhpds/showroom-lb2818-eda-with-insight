@@ -1,7 +1,6 @@
 :imagesdir: ../assets/images
 :toc:
 :numbered:
-:bastion_ssh_user_name: {bastion_ssh_user_name}
 = Trigger and Verify the Event
 
 == Event-Driven Ansible Rulebook Activation
@@ -113,70 +112,41 @@ There are several Advisor (predictive analytics) findings as well as detected vu
 == Red Hat Insights Malware Detection
 [upperalpha]
 
-. To setup Malware Detection, You need to login into insight host. To login click on right side browser based terminal and run the following setps:
+. To setup Malware Detection, You need to login into insight host. To login click on right side browser based terminal and run the following commands:
++
+IMPORTANT: *node1.{guid}.internal* is running behind a firewall, so direct SSH access is not possible. However, it is accessible through the bastion gateway.
++
+****
+[upperroman]
+. First you need to connect with bastion gateway as follows:
+* *ssh {bastion_ssh_user_name}@bastion.{guid}{subdomain_base_suffix}*
++
+NOTE: Enter the *{bastion_ssh_password}* when prompted for password.
+
+. Now run following command from bastion gateway to connect with insight host
+* *ssh node1.{guid}.internal*
++
+NOTE: Key based authentication is configured so we don't need password for the node.
+****
+
+
+. YARA client:
+
+* *Malware Detection needs the YARA client*: You will evaluate your system for potential malware using the Insights Malware Detection service. Insights leverages YARA to scan and detect malware. In your environment, the YARA client is already installed.
+
+* *Malware Detection needs YARA configuration*: The configuration file /etc/insights-client/malware-detection-config.yml has already been set up to enable live scans. This configuration is set to scan only the /home directory, significantly improving the scan speed.
+
+
+. Since this is a new system, there is currently nothing to detect. To simulate a malware detection hit, we will use the* EICAR Anti-Malware* test files. To download the EICAR files into the user's home directory, run the following command:
++
+NOTE: More information about eicar is available here if you would like to learn more: https://www.eicar.org/download-anti-malware-testfile/[window=_blank]
 +
 ****
 [upperroman]
 [source,shell]
 ----
-ssh %bastion_ssh_user_name%@bastion.{guid}{subdomain_base_suffix}
-----
-
-. Enter following password when promted: {bastion_ssh_password}
-. ssh node1.{guid}.internal
-****
-
-
-. The next step is to set up and configure Insights Malware Detection YARA client.
-+
-****
-[upperalpha]
-
-.. Install Insights Malware Detection YARA client 
-+
-[NOTE]
-====
-In this module you will evaluate your system for the potential presence of Malware using the Insights Malware detection service. Red Hat has partnered with IBM X-Force Threat Intelligence to access their malware signatures. Insights uses YARA to evaluate the system for the presence of malware. This requires additional setup beyond Insights registration.
-====
-+
-IMPORTANT: In your environment *yara client* is already installed, This client is part of the appstream in RHEL 8 and 9 and we used *sudo dnf install yara -y* command to install.
-
-.. Configure Insights Malware Detection YARA client 
-+
-[NOTE]
-====
-Since Insights malware detection had never been run before on this system the malware detection service performed some setup including the creation of a config file. So we already configured the */etc/insights-client/malware-detection-config.yml* config file to make scans live.
-
-Inside the file we made following changes:
-
-[source,text]
-----
-test_scan: false
-filesystem_scan_only: [/home]
-----
-
-This setting will scan only the /home directory and will greatly increase the speed of the scan.
-If it is not set then Malware detection will scan the whole file system and the scan will take several minutes to complete (with this setting the scan takes about 10 seconds to complete).
-
-====
-
-.. The Malware detection service is setup. Since this is a new system, there is nothing to find - yet.We will go ahead and have this system generate a malware detection hit. To do this we will use the eicar set of test files.
-+
-[NOTE]
-====
-More information about eicar is available here if you would like to learn more: https://www.eicar.org/download-anti-malware-testfile/[window=_blank]
-
-This set of test files includes 4 different files that test the detection of malware in 4 different ways. On your host we will use the curl command to copy the files from the eicar webpage onto your host.
-====
-
-
-.. To download eicar files in the user's home, run the following command.
-+
-[source,shell]
-----
 cd $HOME
 ----
-+
 [source,shell]
 ----
 curl https://secure.eicar.org/eicar.com -o /home/lab-user/eicar.com <1>
@@ -184,13 +154,15 @@ curl https://secure.eicar.org/eicar.com.txt -o /home/lab-user/eicar.com.txt <2>
 curl https://secure.eicar.org/eicar_com.zip -o /home/lab-user/eicar_com.zip <3>
 curl https://secure.eicar.org/eicarcom2.zip -o /home/lab-user/eicar_com2.zip <4>
 ----
+****
 
-.. List all of the downloaded files, You should see the 4 eicar files in your home directory.
+. Now, list all of the downloaded files, You should see the 4 eicar files in your home directory.
 +
 [source,shell]
 ----
 ls -l
 ----
+
 +
 .Sample Output
 [source,text]
@@ -201,10 +173,94 @@ total 16
 -rw-r--r--. 1 lab-user users  68 Dec 30 06:29 eicar.com.txt
 -rw-r--r--. 1 lab-user users 184 Dec 30 06:29 eicar_com.zip
 ----
+
 +
 NOTE: Each file contains the same text which simulates a malware signature
 
-****
+
+
+
+
+
+
+// . The next step is to set up and configure Insights Malware Detection YARA client.
+// +
+// ****
+// [upperalpha]
+
+// .. Install Insights Malware Detection YARA client 
+// +
+// [NOTE]
+// ====
+// In this module you will evaluate your system for the potential presence of Malware using the Insights Malware detection service. Red Hat has partnered with IBM X-Force Threat Intelligence to access their malware signatures. Insights uses YARA to evaluate the system for the presence of malware. This requires additional setup beyond Insights registration.
+// ====
+// +
+// IMPORTANT: In your environment *yara client* is already installed, This client is part of the appstream in RHEL 8 and 9 and we used *sudo dnf install yara -y* command to install.
+
+// .. Configure Insights Malware Detection YARA client 
+// +
+// [NOTE]
+// ====
+// Since Insights malware detection had never been run before on this system the malware detection service performed some setup including the creation of a config file. So we already configured the */etc/insights-client/malware-detection-config.yml* config file to make scans live.
+
+// Inside the file we made following changes:
+
+// [source,text]
+// ----
+// test_scan: false
+// filesystem_scan_only: [/home]
+// ----
+
+// This setting will scan only the /home directory and will greatly increase the speed of the scan.
+// If it is not set then Malware detection will scan the whole file system and the scan will take several minutes to complete (with this setting the scan takes about 10 seconds to complete).
+
+// ====
+
+// .. The Malware detection service is setup. Since this is a new system, there is nothing to find - yet.We will go ahead and have this system generate a malware detection hit. To do this we will use the eicar set of test files.
+// +
+// [NOTE]
+// ====
+// More information about eicar is available here if you would like to learn more: https://www.eicar.org/download-anti-malware-testfile/[window=_blank]
+
+// This set of test files includes 4 different files that test the detection of malware in 4 different ways. On your host we will use the curl command to copy the files from the eicar webpage onto your host.
+// ====
+
+
+// .. To download eicar files in the user's home, run the following command.
+// +
+// [source,shell]
+// ----
+// cd $HOME
+// ----
+// +
+// [source,shell]
+// ----
+// curl https://secure.eicar.org/eicar.com -o /home/lab-user/eicar.com <1>
+// curl https://secure.eicar.org/eicar.com.txt -o /home/lab-user/eicar.com.txt <2>
+// curl https://secure.eicar.org/eicar_com.zip -o /home/lab-user/eicar_com.zip <3>
+// curl https://secure.eicar.org/eicarcom2.zip -o /home/lab-user/eicar_com2.zip <4>
+// ----
+
+// .. List all of the downloaded files, You should see the 4 eicar files in your home directory.
+// +
+// [source,shell]
+// ----
+// ls -l
+// ----
+// +
+// .Sample Output
+// [source,text]
+// ----
+// total 16
+// -rw-r--r--. 1 lab-user users  68 Dec 30 06:29 eicar.com
+// -rw-r--r--. 1 lab-user users 308 Dec 30 06:29 eicar_com2.zip
+// -rw-r--r--. 1 lab-user users  68 Dec 30 06:29 eicar.com.txt
+// -rw-r--r--. 1 lab-user users 184 Dec 30 06:29 eicar_com.zip
+// ----
+// +
+// NOTE: Each file contains the same text which simulates a malware signature
+
+// ****
 
 
 . Generate a Malware Detection incident.
