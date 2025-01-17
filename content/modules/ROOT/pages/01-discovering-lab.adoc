@@ -12,20 +12,22 @@ In this workshop, we have installed and pre-configured several products to demon
 
 :sectnums:
 == VS Code Server
+[upperalpha]
+
 . Log in to the VS Code Server, where we will use the integrated terminal to execute oc commands. These commands will create OpenShift resources, which will subsequently trigger events during the lab exercise.
 +
 ****
-[upperalpha]
 // .. Login Details:
 * *VS Code Server URL:* https://bastion.{guid}{subdomain_base_suffix}[window=_blank]
 * *Password:* {bastion_ssh_password}
 ****
 
 == Red Hat OpenShift Console
+[upperalpha]
+
 . Optionally, you can log in to the Red Hat OpenShift Console to explore the resources that are already installed and configured. This also allows you to verify the impact of the Event-Driven triggers that will occur in the upcoming labs.
 +
 ****
-[upperalpha]
 // .. Login Details:
 * *Red Hat OpenShift Console URL:* {openshift_cluster_console_url}[window=_blank]
 * Click *htpasswd_provider* then enter username & password
@@ -34,10 +36,11 @@ In this workshop, we have installed and pre-configured several products to demon
 ****
 
 == Red Hat Hybrid Cloud Console
+[upperalpha]
 . Log in to the Red Hat Hybrid Cloud Console, as we will use it to create Event-Driven Integrations, Notifications, and Triggers in the upcoming labs.
 +
 ****
-[upperalpha]
+
 // .. Log details:
 * *Console URL:* {hybrid_cloud_url}
 * *Username:*	{hybrid_cloud_username}
@@ -48,6 +51,8 @@ NOTE: This user has limited permissions in the Red Hat Hybrid Cloud Console. Whi
 ****
 
 == Red Hat Ansible Automation Platform
+[upperalpha]
+
 . Log in to Ansible Automation Platform 2.5 to explore Automation Execution and Automation Decisions, which will play a key role in the Event-Driven Ansible triggers in the upcoming labs.
 +
 ****
@@ -59,12 +64,17 @@ NOTE: This user has limited permissions in the Red Hat Hybrid Cloud Console. Whi
 ****
 
 === Explore Automation Execution
+[upperalpha]
+
 Let's take a moment to explore the Automation Execution that has already been configured for this lab. 
+
+WARNING: Please don't skip this section! There are some steps you need to take below. 
+
+[upperalpha]
 
 . The following projects have been pre-configured for this lab. For more details, navigate to *Automation Execution → Projects*.
 +
 ****
-[upperalpha]
 .. *RH Insights project* - This project is configured to work with Insight events in the Job Template.
 .. *event-driven-ansible* - This project is configured to work with OpenShift events in the Job Template.
 
@@ -80,6 +90,8 @@ Let's take a moment to explore the Automation Execution that has already been co
 ****
 
 . The following inventories have been pre-configured for this lab. For more details, navigate to *Automation Execution → Infrastructure → Inventories*.
++
+IMPORTANT: Please don't skip this section!
 +
 ****
 [upperalpha]
@@ -101,46 +113,50 @@ Let's take a moment to explore the Automation Execution that has already been co
 ****
 
 === Explore Automation Decision
+[upperalpha]
+
 Let's take a moment to explore the Automation Decision that has already been configured for this lab. This step is entirely optional, and you may skip it and proceed to the next page. However, gaining an understanding of the pre-configured setup can be helpful for the upcoming lab exercises.
+
+[upperalpha]
 
 . The following projects have been pre-configured for this lab. For more details, navigate to *Automation Decisions → Projects*.
 +
 ****
 [upperalpha] 
-.. *OpenShift Event Rulebooks*
-.. *RH Insights*
+.. *OpenShift Event Rulebooks* - This project contains Event-Driven Ansible rulebooks designed to process Red Hat OpenShift events.
+.. *RH Insights* - This project contains Event-Driven Ansible rulebooks designed to process Insights events.
 ****
 
 . The following credentials have been pre-configured for this lab. For more details, navigate to *Automation Decisions → Infrastructure → Credentials*.
 +
 ****
 [upperalpha]
-.. *RHInsights*
-.. *registry.redhat.io*
-.. *RH AAP Credential*
+.. *RHInsights* - Red Hat Insight token to connect with Red Hat Insights.
+.. *registry.redhat.io* -  Registry credentials.
+.. *RH AAP Credential* - Red Hat Ansible Automation Platform credentials.
 ****
 
 . The following Decision Environments have been pre-configured for this lab. For more details, navigate to *Automation Decisions → Decision Environments*.
 +
 ****
 [upperalpha]
-.. *Default Decision Environment*
-.. *AAP2.5 - OCP4 Custom Decision*
+.. *Default Decision Environment* - is the default environment that uses the registry.redhat.io/ansible-automation-platform-25/de-supported-rhel8:latest image.
+.. *AAP2.5 - OCP4 Custom Decision* - is a custom decision environment built from the default environment. This decsion environment includes a custom Event-Driven Ansible plugin, k8s, and is hosted on quay.io/mitsharm/eda/de-for-ocp-aap-25:latest.
 ****
 
 . The following Event Streams have been pre-configured for this lab. For more details, navigate to *Automation Decisions → Event Streams*. 
 +
 ****
 [upperalpha]
-.. *Red Hat Insights Event Stream*
+.. *Red Hat Insights Event Stream* - is an event stream created to integrate Red Hat Hybrid Cloud with a Rulebook Activation.
 ****
 
 . The following Rulebook Activations have been pre-configured for this lab. For more details, navigate to *Automation Decisions → Rulebook Activations*.
 +
 ****
 [upperalpha]
-.. *Create Volume Snapshot* - 
-.. *Set Resource Quota On Namespace*
-.. *Patch Route With Cert*
+.. *Create Volume Snapshot* - This Rulebook Activation triggers an action whenever a new Persistent Volume Claim (PVC) is created in Red Hat OpenShift.
+.. *Set Resource Quota On Namespace* - This Rulebook Activation triggers an action whenever a new unsecured route is created in Red Hat OpenShift.
+.. *Patch Route With Cert* -  This Rulebook Activation triggers an action whenever a new namespace is created in Red Hat OpenShift.
 ****
 
