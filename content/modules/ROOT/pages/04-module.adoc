@@ -1,7 +1,7 @@
 :imagesdir: ../assets/images
 :toc:
 :numbered:
-
+:bastion_ssh_user_name: {bastion_ssh_user_name}
 = Trigger and Verify the Event
 
 == Event-Driven Ansible Rulebook Activation
@@ -36,48 +36,96 @@ NOTE: This action will take several minutes.  You do not need to wait for it to 
 
 ****
 
-== Insights Malware Detection
 
-. You are all set to receive a rulebook in the event that Insights detects malware on a RHEL host. 
-+
-****
+== Explore Red Hat Insights RHEL inventory
 [upperalpha]
 
-.. Locate the host in the Red Hat Insights RHEL inventory.
-+
-[NOTE]
-====
-Insights uses the insights-client on each RHEL host to report system facts to Insights for analysis. The insights-client is typically part of the base RHEL image, but you will need to register the host to Insights through a registration command.
+. Your host *node1.{guid}.internal* is already connected to Red Hat Insights. To connect, We used the *rhc* command (remote host configuration) which wraps the subscription-manager and the insights registration command into a single command while also enabling some other capabilities like Insights remediation.
 
-There are a couple of different ways to connect to Insights. In this lab we used a manual command, but you can also register from a Red Hat Satellite Server if your host is connected to a Satellite or you can leverage an ansible playbook. If you connect your cloud provider to the Hybrid Cloud Console (console.redhat.com) then systems in the cloud can be automatically registered to Red Hat and Insights.
-
-We used the rhc command (remote host configuration) which wraps the subscription-manager and the insights registration command into a single command while also enabling some other capabilities like Insights remediation.
-====
+. To Locate the host in the Red Hat Insights RHEL inventory. Return to Hybrid Cloud Console {hybrid_cloud_url}. Click the search bar at the top *(the magnifying glass)*
 +
-IMPORTANT: Your host (node1) is already connected to Red Hat Insights.
-
-.. Return to Hybrid Cloud Console {hybrid_cloud_url}.
-+
-* Click the search bar at the top (the magnifying glass)
-+
+****
+[upperroman]
 .Search Inventory
 image::hybrid-cloud-rhel-inventory-search.jpg[Inventory]
+****
 
-
-* In the search box, type "Inventory". You should see several results in the drop down box, select *Inventory | RHEL*
+. In the search box, type *Inventory*. You should see several results in the drop down box, select *Inventory | RHEL*
 +
+****
+[upperroman]
 .Search Keyworkd
 image::hybrid-cloud-rhel-inventory-search-keyword.jpg[Inventory keyword]
+****
 
 
-* From the inventory you should see your host listed as node1.{guid}.internal, 
+. In the inventory you should see your host listed as *node1.{guid}.internal*.
 +
 [NOTE]
 ====
 You can select your host and see basic system facts and analytics if desired.
 There are several Advisor (predictive analytics) findings as well as detected vulnerabilities and needed patches.  Feel free to explore the inventory if desired.
 ====
+
+// . You are all set to receive a rulebook in the event that Insights detects malware on a RHEL host. 
+// [NOTE]
+// ====
+// Insights uses the insights-client on each RHEL host to report system facts to Insights for analysis. The insights-client is typically part of the base RHEL image, but you will need to register the host to Insights through a registration command.
+
+// There are a couple of different ways to connect to Insights. In this lab we used a manual command, but you can also register from a Red Hat Satellite Server if your host is connected to a Satellite or you can leverage an ansible playbook. If you connect your cloud provider to the Hybrid Cloud Console (console.redhat.com) then systems in the cloud can be automatically registered to Red Hat and Insights.
+
+// We used the rhc command (remote host configuration) which wraps the subscription-manager and the insights registration command into a single command while also enabling some other capabilities like Insights remediation.
+// ====
+// +
+// IMPORTANT: Your host (node1) is already connected to Red Hat Insights.
+
+// +
+// ****
+// [upperalpha]
+
+// .. Locate the host in the Red Hat Insights RHEL inventory.
+// +
+
+
+// .. Return to Hybrid Cloud Console {hybrid_cloud_url}.
+// +
+// * Click the search bar at the top (the magnifying glass)
+// +
+// .Search Inventory
+// image::hybrid-cloud-rhel-inventory-search.jpg[Inventory]
+
+
+// * In the search box, type "Inventory". You should see several results in the drop down box, select *Inventory | RHEL*
+// +
+// .Search Keyworkd
+// image::hybrid-cloud-rhel-inventory-search-keyword.jpg[Inventory keyword]
+
+
+// * From the inventory you should see your host listed as node1.{guid}.internal, 
+// +
+// [NOTE]
+// ====
+// You can select your host and see basic system facts and analytics if desired.
+// There are several Advisor (predictive analytics) findings as well as detected vulnerabilities and needed patches.  Feel free to explore the inventory if desired.
+// ====
+// ****
+
+== Red Hat Insights Malware Detection
+[upperalpha]
+
+. To setup Malware Detection, You need to login into insight host. To login click on right side browser based terminal and run the following setps:
++
 ****
+[upperroman]
+[source,shell]
+----
+ssh %bastion_ssh_user_name%@bastion.{guid}{subdomain_base_suffix}
+----
+
+. Enter following password when promted: {bastion_ssh_password}
+. ssh node1.{guid}.internal
+****
+
 
 . The next step is to set up and configure Insights Malware Detection YARA client.
 +
@@ -121,12 +169,6 @@ More information about eicar is available here if you would like to learn more: 
 This set of test files includes 4 different files that test the detection of malware in 4 different ways. On your host we will use the curl command to copy the files from the eicar webpage onto your host.
 ====
 
-.. You need to login to insight host to set up Malware Detection as follows
-+
-* Click on right side browser based terminal window and enter following to login
-* ssh {bastion_ssh_user_name}@bastion.{guid}{subdomain_base_suffix}
-* Enter following password when promted: {bastion_ssh_password}
-* ssh node1.{guid}.internal
 
 .. To download eicar files in the user's home, run the following command.
 +
