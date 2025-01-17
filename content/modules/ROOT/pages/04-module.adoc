@@ -148,7 +148,7 @@ NOTE: Each file contains the same text which simulates a malware signature
 === Generate Malware Detection Incident
 [upperalpha]
 
-. Lets run the malware detection scan to generate Malware Detection incident in your system. Run to following command.
+. Lets run the malware detection scan to generate Malware Detection incident in your system. Run the following command.
 +
 [source,shell]
 ----
