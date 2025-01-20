@@ -39,7 +39,7 @@ NOTE: This action will take several minutes.  You do not need to wait for it to 
 == Explore Red Hat Insights RHEL inventory
 [upperalpha]
 
-. Your host *node1.{guid}.internal* is already connected to Red Hat Insights. To connect, We used the *rhc* command (remote host configuration) which wraps the subscription-manager and the insights registration command into a single command while also enabling some other capabilities like Insights remediation.
+// . Your host *node1.{guid}.internal* is already connected to Red Hat Insights. To connect, We used the *rhc* command (remote host configuration) which wraps the subscription-manager and the insights registration command into a single command while also enabling some other capabilities like Insights remediation.
 
 . To Locate the host in the Red Hat Insights RHEL inventory. Return to Hybrid Cloud Console {hybrid_cloud_url}. Click the search bar at the top *(the magnifying glass)*
 +
@@ -71,7 +71,7 @@ There are several Advisor (predictive analytics) findings as well as detected vu
 
 === Setup Malware Detection
 [upperalpha]
-. To setup Malware Detection, You need to login into insight host. To login click on right side browser based terminal and run the following commands:
+. To setup Malware Detection, You need to login into insights host. To login click on right side browser based terminal and run the following commands:
 +
 IMPORTANT: *node1.{guid}.internal* is running behind a firewall, so direct SSH access is not possible. However, it is accessible through the bastion gateway.
 +
@@ -85,7 +85,7 @@ IMPORTANT: *node1.{guid}.internal* is running behind a firewall, so direct SSH a
 NOTE: Enter the *{bastion_ssh_password}* when prompted for password.
 ****
 
-.. Now run following command from bastion gateway to connect with insight host
+.. Now run following command from bastion gateway to connect with insights host
 +
 ****
 [upperroman]

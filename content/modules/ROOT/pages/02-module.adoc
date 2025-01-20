@@ -8,7 +8,7 @@
 In order to trigger a set resource quota on a new namespace (rocketchat) by Event-driven ansible event. The new namespace creation will eventually trigger a set resource quota event. As an action for the event it will set resource quota on created rocketchat namespace.
 
 [upperalpha]
-. You need to retrune VS Code Server and open integrated terminal.
+. You need to retrune VS code Server and open the integrated terminal.
 +
 ****
 [upperroman]
@@ -93,7 +93,7 @@ oc get volumesnapshot -n rocketchat
 
 In order to trigger a patch route of newly added route by Event-driven ansible event. We go to the terminal and make sure we are still in the test-events directory which contains three yaml files of OpenShift object definition.
 
-* *To trigger the patch route* - We run oc command with 3-test-route-with-cert.yml file which creates route for rocketchat app in rocketchat namespace. New route creation will eventually trigger a patch route event. As an action for the event it will patch the route with a signed certificate in the rocketchat namespace.
+* *To trigger the patch route* - We run oc command with 3-test-route-with-cert.yml file which creates a route for the rocketchat app in the rocketchat namespace. New route creation will eventually trigger a patch route event. As an action for the event it will patch the route with a signed certificate in the rocketchat namespace.
 
 * *To observe and Verify* - We can check Automation Decision (Event-Driven Ansible) and Automation Execution (Automation Controller) jobs. To verify the changes run OpenShift oc command to get the route in rocketchat namespace.
 

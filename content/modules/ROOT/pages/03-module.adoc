@@ -28,7 +28,7 @@ WARNING: Remember that you have the Event Stream URL in your clipboard, so you m
 == Red Hat Hybrid Cloud Console Integrations
 
 [upperalpha]
-. To set up the Insight trigger, log in to the Red Hat Hybrid Cloud Console using the following credentials:
+. To set up the Insights trigger, log in to the Red Hat Hybrid Cloud Console using the following credentials:
 +
 ****
 [upperroman]
@@ -185,7 +185,7 @@ image::hybrid-cloud-notification-BehaviorGroup-1.jpg[Behavior Groups Name]
 [upperroman]
 .Behavior Groups Action and Recipient
 image::hybrid-cloud-notification-BehaviorGroup-2.jpg[Behavior Groups Action and Recipient]
-+
+
 NOTE: Additional actions can be added to a behavior group.  As an example, it is possible to have the same group sending data to Event-Driven Ansible, Slack, ServiceNow, Microsoft Teams, and a generic webhook. You'll just be configuring the Event-Driven Ansible integration at this time.
 ****
 
@@ -198,7 +198,7 @@ NOTE: Additional actions can be added to a behavior group.  As an example, it is
 image::hybrid-cloud-notification-BehaviorGroup-3.jpg[Behavior Groups Action and Recipient]
 ****
 
-.. *Review* then click *finish*.
+.. *Review* then click *Finish*.
 
 
 NOTE: At this point you have created an integration and a behavior group in the Red Hat Hybrid Cloud Console.
